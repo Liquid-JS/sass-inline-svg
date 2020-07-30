@@ -1,5 +1,5 @@
 {
-  "name": "sass-inline-svg",
+  "name": "@liquid-js/sass-inline-svg",
   "version": "2.0.0",
   "description": "a sass function that inlines svg files",
   "main": "index.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/haithembelhaj/sass-inline-svg.git"
+    "url": "https://github.com/Liquid-JS/sass-inline-svg.git"
   },
   "keywords": [
     "sass",
@@ -30,9 +30,9 @@
   "author": "Haithem Bel Haj",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haithembelhaj/sass-inline-svg/issues"
+    "url": "https://github.com/Liquid-JS/sass-inline-svg/issues"
   },
-  "homepage": "https://github.com/haithembelhaj/sass-inline-svg",
+  "homepage": "https://github.com/Liquid-JS/sass-inline-svg",
   "dependencies": {
     "css-select": "^2.1.0",
     "deasync": "^0.1.20",
