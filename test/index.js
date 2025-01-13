@@ -20,7 +20,7 @@ describe('test svg inliner', function () {
       const expectedResult = fs.readFileSync(resolve(__dirname, 'test.svg')).toString('base64');
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("data:image/svg+xml;base64,${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 
@@ -40,7 +40,7 @@ describe('test svg inliner', function () {
       const expectedResult = encodeMiniUri(fs.readFileSync(resolve(__dirname, 'test.svg')).toString('utf-8'));
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 
@@ -58,7 +58,7 @@ describe('test svg inliner', function () {
       const expectedResult = Buffer.from('<svg height="210" width="400"><path fill="rgb(0,0,0)" d="M150 0L75 200h150z"/></svg>\n', 'utf8').toString('base64');
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("data:image/svg+xml;base64,${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 
@@ -76,7 +76,7 @@ describe('test svg inliner', function () {
       const expectedResult = Buffer.from('<svg height="210" width="400"><path fill="rgba(0,0,0,0.5)" d="M150 0L75 200h150z"/></svg>\n', 'utf8').toString('base64');
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("data:image/svg+xml;base64,${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 
@@ -96,7 +96,7 @@ describe('test svg inliner', function () {
       const expectedResult = Buffer.from('<svg height="210" width="400"><path fill="red" d="M150 0L75 200h150z"/></svg>', 'utf8').toString('base64');
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("data:image/svg+xml;base64,${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 
@@ -116,7 +116,7 @@ describe('test svg inliner', function () {
       const expectedResult = Buffer.from('<svg height="210" width="400"><path fill="#FFF" d="M150 0L75 200h150z"/></svg>', 'utf8').toString('base64');
 
       expect(result.css.toString()).to.equal(`.sass {\n  background: url("data:image/svg+xml;base64,${expectedResult}");\n}`);
-      done();
+      done(err);
     });
   });
 });

@@ -1,13 +1,13 @@
-[![Build Status](https://travis-ci.org/haithembelhaj/sass-inline-svg.svg)](https://travis-ci.org/haithembelhaj/sass-inline-svg)
-[![Coverage Status](https://coveralls.io/repos/github/haithembelhaj/sass-inline-svg/badge.svg?branch=master)](https://coveralls.io/github/haithembelhaj/sass-inline-svg?branch=master)
-[![Dependency Status](https://david-dm.org/haithembelhaj/sass-inline.svg)](https://david-dm.org/haithembelhaj/sass-inline-svg)
-[![devDependency Status](https://david-dm.org/haithembelhaj/sass-inline-svg/dev-status.svg)](https://david-dm.org/haithembelhaj/sass-inline-svg#info=devDependencies)
+[![Build Status](https://travis-ci.org/Liquid-JS/sass-inline-svg.svg)](https://travis-ci.org/Liquid-JS/sass-inline-svg)
+[![Coverage Status](https://coveralls.io/repos/github/Liquid-JS/sass-inline-svg/badge.svg?branch=master)](https://coveralls.io/github/Liquid-JS/sass-inline-svg?branch=master)
+[![Dependency Status](https://david-dm.org/haithembelhaj/sass-inline.svg)](https://david-dm.org/Liquid-JS/sass-inline-svg)
+[![devDependency Status](https://david-dm.org/Liquid-JS/sass-inline-svg/dev-status.svg)](https://david-dm.org/Liquid-JS/sass-inline-svg#info=devDependencies)
 
-# sass-inline-svg
+# @liquid-js/sass-inline-svg
 
 ## Install
 
-    $ npm install --save-dev sass-inline-svg
+    $ npm install --save-dev @liquid-js/sass-inline-svg
 
 ## Usage
 
@@ -20,7 +20,7 @@ You should initialize the inliner with a basepath where it will look for the svg
 
 ```js
 var sass = require('sass');
-var inliner = require('sass-inline-svg')
+var inliner = require('@liquid-js/sass-inline-svg')
 
 sass.render({
   data: '.logo-icon{ background: svg("logo.svg")}',
@@ -32,7 +32,7 @@ sass.render({
 
 #### sass CLI usage
 
-    $ sass --functions=node_modules/sass-inline-svg/default [other sass arguments]
+    $ sass --functions=node_modules/@liquid-js/sass-inline-svg/default [other sass arguments]
 
 This is equivalent to specifying the following:
 
@@ -48,7 +48,7 @@ renderOptions = {
 ### grunt-sass
 
 ```js
-var inliner = require('sass-inline-svg')
+var inliner = require('@liquid-js/sass-inline-svg')
 
 grunt.initConfig({
     sass: {
