@@ -1,8 +1,7 @@
-import { inliner } from './inliner.js'
+import { inliner, InlinerOptions } from './inliner.js'
+import { EncodingFormat } from './utils.js'
 
-export {
-    inliner
-}
+export { inliner, type EncodingFormat, type InlinerOptions }
 
 export default {
     'svg($path, $selectors: null)': inliner('./', {}),

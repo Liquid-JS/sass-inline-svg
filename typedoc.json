@@ -8,5 +8,19 @@
         "kind",
         "instance-first",
         "source-order"
+    ],
+    "highlightLanguages": [
+        "bash",
+        "console",
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "jsonc",
+        "json5",
+        "yaml",
+        "tsx",
+        "typescript",
+        "scss"
     ]
 }
