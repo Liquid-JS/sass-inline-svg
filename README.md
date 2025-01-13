@@ -1,90 +1,71 @@
-[![Build Status](https://travis-ci.org/Liquid-JS/sass-inline-svg.svg)](https://travis-ci.org/Liquid-JS/sass-inline-svg)
-[![Coverage Status](https://coveralls.io/repos/github/Liquid-JS/sass-inline-svg/badge.svg?branch=master)](https://coveralls.io/github/Liquid-JS/sass-inline-svg?branch=master)
-[![Dependency Status](https://david-dm.org/haithembelhaj/sass-inline.svg)](https://david-dm.org/Liquid-JS/sass-inline-svg)
-[![devDependency Status](https://david-dm.org/Liquid-JS/sass-inline-svg/dev-status.svg)](https://david-dm.org/Liquid-JS/sass-inline-svg#info=devDependencies)
+# sass-inline-svg
 
-# @liquid-js/sass-inline-svg
+[![GitHub license](https://img.shields.io/github/license/Liquid-JS/sass-inline-svg.svg)](https://github.com/Liquid-JS/sass-inline-svg/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/dm/@liquid-js/sass-inline-svg.svg)](https://www.npmjs.com/package/@liquid-js/sass-inline-svg)
+[![scope](https://img.shields.io/npm/v/@liquid-js/sass-inline-svg.svg)](https://www.npmjs.com/package/@liquid-js/sass-inline-svg)
 
-## Install
+A sass function that inlines svg files.
 
-    $ npm install --save-dev @liquid-js/sass-inline-svg
+## Installation
+
+    npm install @liquid-js/sass-inline-svg
+
+## API Documentation
+
+<https://liquid-js.github.io/sass-inline-svg/>
 
 ## Usage
 
-You can use this function in sass or any project that depends on sass.
-The only thing you need to do to make this work is add the inlinerfunction to the functions option.
-
-You should initialize the inliner with a basepath where it will look for the svg files.
-
-### sass
+### Simple example
 
 ```js
-var sass = require('sass');
-var inliner = require('@liquid-js/sass-inline-svg')
+import inlinerFunctions from '@liquid-js/sass-inline-svg'
+import { compile } from 'sass'
 
-sass.render({
-  data: '.logo-icon{ background: svg("logo.svg")}',
-  functions: {
-    "svg($path, $selectors: null)": inliner('./', [options])
-  }
-});
-```
-
-#### sass CLI usage
-
-    $ sass --functions=node_modules/@liquid-js/sass-inline-svg/default [other sass arguments]
-
-This is equivalent to specifying the following:
-
-```js
-renderOptions = {
-  functions: {
-    'svg($path, $selectors: null)': inliner('./', {}),
-    'inline-svg($path, $selectors: null)': inliner('./', {})
-  }
-}
-```
-
-### grunt-sass
-
-```js
-var inliner = require('@liquid-js/sass-inline-svg')
-
-grunt.initConfig({
-    sass: {
-        options: {
-            functions: {
-                "svg($path, $selectors: null)": inliner('./', [options])
-            }
-        },
-        ...
+const result = compile('styles.scss', {
+    functions: {
+        ...inlinerFunctions,
+        // other functions
     }
 })
 ```
 
-## options
+```scss
+.logo-icon {
+    background: svg("logo.svg");
+}
+```
 
-### optimize (default false)
+### SVG transformation
 
-`{optimize: true}` uses [svgo](https://github.com/svg/svgo) internally to optmize the svg.
-
-### encodingFormat (default: base64)
-
-`base64` will encode the SVG with base64, while `uri` will do a minimal URI-encoding of the svg -- `uri` is always smaller, and has good browser support as well.
-
-## svg transformation
-
-The inliner accepts a second argument, a sass-map, that describes a css like transformation. The first keys of this map are css-selectors. Their values are also sass-maps that holds a key-value store of the svg-attribute transformation you want to apply to the corresponding selector.
+The inliner accepts a second argument, a map that describes transformation as `{ selector: { attribute: value } }`. 
 
 ```scss
 .logo-icon {
-  background: svg("logo.svg", (path: (fill: green), rect: (stroke: white)));
+    background: svg("logo.svg", (path: (fill: green), rect: (stroke: white)));
 }
-
 ```
 
-In this example `path` and `rect` are selectors and `fill: green` and `stroke: white` are the associated applied attributes.
+In the above example all `path` elemens will have `fill="green"` and all `rect` elements will have `stroke="white"`.
+
+### Configuring the inliner
+
+```js
+import { inliner } from '@liquid-js/sass-inline-svg'
+import { compile } from 'sass'
+
+const result = compile('styles.scss', {
+    functions: {
+        'svg($path, $selectors: null)': inliner('[basePath]', {
+            // Use SVGO to optimize the code before inlining
+            optimize: true,
+            // Encode SVG as plain data URI, which is smaller than base64 encoding (but might not be supported on legacy browsers)
+            encodingFormat: 'uri'
+        })
+    }
+})
+```
 
 ## License
 
-MIT
+[ISC License](https://github.com/Liquid-JS/sass-inline-svg/blob/master/LICENSE)

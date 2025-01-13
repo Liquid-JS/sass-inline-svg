@@ -1,66 +1,96 @@
 {
-  "name": "@liquid-js/sass-inline-svg",
-  "version": "2.0.0",
-  "description": "a sass function that inlines svg files",
-  "main": "index.js",
-  "scripts": {
-    "test": "nyc mocha",
-    "lint": "eslint index.js default.js test/**/*.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
-  },
-  "config": {
-    "ghooks": {
-      "pre-push": "npm test",
-      "pre-commit": "npm run lint",
-      "post-merge": "npm install",
-      "post-rewrite": "npm install"
+    "name": "@liquid-js/sass-inline-svg",
+    "version": "2.0.0",
+    "description": "A sass function that inlines svg files",
+    "type": "module",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+        "./package.json": {
+            "default": "./package.json"
+        },
+        ".": {
+            "types": "./lib/index.d.ts",
+            "default": "./lib/index.js"
+        }
+    },
+    "files": [
+        "lib"
+    ],
+    "peerDependencies": {
+        "sass": "^1.27.0"
+    },
+    "dependencies": {
+        "css-select": "^5.1.0",
+        "dom-serializer": "^2.0.0",
+        "htmlparser2": "^10.0.0",
+        "mini-svg-data-uri": "^1.4.4",
+        "svgo": "^3.3.2"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.6.1",
+        "@commitlint/config-conventional": "^19.6.0",
+        "@stylistic/eslint-plugin": "^2.13.0",
+        "@testdeck/mocha": "^0.3.3",
+        "@types/chai": "^5.0.1",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "<23.0.0",
+        "@types/source-map-support": "^0.5.10",
+        "chai": "^5.1.2",
+        "clean-package": "^2.2.0",
+        "commit-and-tag-version": "^12.5.0",
+        "eslint": "^9.18.0",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-jsdoc": "^50.6.1",
+        "eslint-plugin-prefer-arrow-functions": "^3.6.1",
+        "eslint-plugin-unused-imports": "^4.1.4",
+        "husky": "^9.1.7",
+        "mocha": "^11.0.1",
+        "npm-check-updates": "^17.1.13",
+        "rimraf": "^6.0.1",
+        "sass": "^1.83.1",
+        "source-map-support": "^0.5.21",
+        "ts-node-maintained": "^10.9.4",
+        "typedoc": "^0.27.6",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.19.1"
+    },
+    "scripts": {
+        "build": "rimraf lib && tsc -p tsconfig.lib.json",
+        "test": "mocha -p",
+        "start": "vite src",
+        "lint": "eslint . --fix",
+        "prepublishOnly": "npm run build",
+        "prepare": "husky",
+        "release": "git diff --exit-code && commit-and-tag-version && git push --follow-tags origin",
+        "docs": "typedoc",
+        "prepack": "clean-package",
+        "postpack": "clean-package restore"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Liquid-JS/sass-inline-svg.git"
+    },
+    "keywords": [
+        "sass",
+        "svg",
+        "inline",
+        "function",
+        "sass"
+    ],
+    "author": "HitkoDev <development@hitko.si>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Liquid-JS/sass-inline-svg/issues"
+    },
+    "homepage": "https://liquid-js.github.io/sass-inline-svg/",
+    "packageManager": "yarn@4.6.0",
+    "clean-package": {
+        "remove": [
+            "packageManager",
+            "scripts",
+            "devDependencies",
+            "clean-package"
+        ]
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Liquid-JS/sass-inline-svg.git"
-  },
-  "keywords": [
-    "sass",
-    "svg",
-    "inline",
-    "function",
-    "sass"
-  ],
-  "author": "Haithem Bel Haj",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Liquid-JS/sass-inline-svg/issues"
-  },
-  "homepage": "https://github.com/Liquid-JS/sass-inline-svg",
-  "dependencies": {
-    "css-select": "^2.1.0",
-    "deasync": "^0.1.20",
-    "dom-serializer": "^1.0.1",
-    "htmlparser2": "^4.1.0",
-    "mini-svg-data-uri": "^1.2.3",
-    "object-assign": "^4.1.1",
-    "svgo": "^1.3.2"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "coveralls": "^3.1.0",
-    "eslint": "^7.5.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-mocha": "^7.0.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "ghooks": "^2.0.4",
-    "mocha": "^8.0.1",
-    "nyc": "^15.1.0",
-    "sass": "^1.26.10"
-  },
-  "peerDependencies": {
-    "sass": "^1.26.10"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
 }
